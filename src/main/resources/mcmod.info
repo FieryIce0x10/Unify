@@ -1,0 +1,12 @@
+[
+{
+  "modid": "Unify",
+  "name": "Unify",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["FieryIce0x10"],
+  "dependencies": []
+}
+]

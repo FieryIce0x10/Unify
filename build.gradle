@@ -1,0 +1,135 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+
+// Java 7+ ONLY!
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+if(System.getenv().BUILD_NUMBER != null) {
+    // CI build
+    version = modversion  + "-" + mcversion + "-" + System.getenv().BUILD_NUMBER
+} else {
+    // Local build
+    version = modversion + "-" + mcversion + "-local"
+}
+group = "nl.fieryice0x10.mc"
+archivesBaseName = "Unify"
+
+minecraft {
+    version = mcversion + "-" + forgeversion
+    runDir = "eclipse"
+    
+    replace "@VERSION@", project.version
+    replaceIn "MetalUnifier.java"
+}
+
+repositories {
+    // The numbers change for each file on curse!
+    ivy {
+        name "ThermalExpansion"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2282/513/[module]-[revision].[ext]"
+    }
+    ivy {
+        name "Tinkers Construct"
+        artifactPattern "http://addons.cursecdn.com/files/2264/246/[module]-[revision].[ext]"
+    }
+    ivy {
+        name = "Railcraft"
+        artifactPattern "https://dl.dropboxusercontent.com/u/38558957/Minecraft/Railcraft/[artifact]_[revision](-[classifier]).[ext]"
+    }
+    maven {
+        name = "ic2"
+        url = "http://maven.ic2.player.to/"
+    }
+    // Abuse the classifier to indicate the build number.
+    ivy {
+        name = "EnderIO"
+        artifactPattern "http://ci.tterrag.com/job/[artifact]/[classifier]/artifact/build/libs/[artifact]-[revision].[ext]"
+    }
+    ivy {
+        name = "Galacticraft"
+        artifactPattern "http://ci.micdoodle8.com/job/Galacticraft-1.7/[classifier]/artifact/Forge/build/libs/[artifact]-[revision].[ext]"
+    }
+    ivy {
+        name = "Mekanism"
+        artifactPattern "http://aidancbrady.com/wp-content/uploads/mekanism/[classifier]/[artifact]-[revision].[ext]"
+        artifactPattern "http://aidancbrady.com/wp-content/uploads/mekanism/[classifier]-recommended/[artifact]-[revision].[ext]"
+    }
+}
+
+dependencies {
+    compile group: 'net.industrial-craft', name: 'industrialcraft-2', ext: 'jar', version: '2.2.811-experimental', classifier: 'dev'
+    compile name: 'Railcraft', ext: 'jar', version: '1.7.10-9.9.0.0', classifier: 'dev'
+
+    // Note: the repository changes for each file!
+    compile group: 'cofh', name: 'ThermalExpansion', version: '[1.7.10]4.1.2-240-dev', ext: 'jar'
+    compile group: 'tconstruct', name: 'TConstruct', version: '1.7.10-1.8.8', ext: 'jar'
+
+    // Abuse the classifier to indicate the build number.
+    compile name: 'EnderIO', ext: 'jar', version: '1.7.10-2.2.8.381', classifier: '381'
+    compile name: 'GalacticraftCore', ext: 'jar', version: '1.7-3.0.12.448', classifier: '448'
+    compile name: 'Mekanism', ext: 'jar', version: '1.7.10-8.1.9.265', classifier: '265'
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+jar {
+    // Do not include the COFH AT, as it is only used to run the client.
+    exclude 'CoFH_at.cfg' 
+}
+
+javadoc {
+    options {
+        links('http://docs.oracle.com/javase/7/docs/api/')
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+
