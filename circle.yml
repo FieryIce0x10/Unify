@@ -9,7 +9,7 @@ machine:
 dependencies:
   override:
     - ~/gradle/bin/gradle setupCIWorkspace
-	- ~/gradle/bin/gradle build
+    - ~/gradle/bin/gradle build
 
 test:
   override:
