@@ -206,7 +206,7 @@ public class Unify {
 	 *            the item to replace
 	 * @param replacements
 	 *            the possible replacements
-	 *            Map<oreDictname, replacement>
+	 *            Map&lt;oreDictname, replacement&gt;
 	 * @return the replacement, or null if none found.
 	 */
 	public static final ItemStack firstMatchingReplacement(ItemStack stack,
