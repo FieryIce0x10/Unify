@@ -8,10 +8,10 @@ machine:
 
 dependencies:
   override:
-    - ~/gradle/gradle setupCIWorkspace
+    - ~/gradle/bin/gradle setupCIWorkspace
 
 test:
   override:
-    - ~/gradle/gradle build sourcesJar javadocJar
+    - ~/gradle/bin/gradle build sourcesJar javadocJar
   post:
     - cp build/libs/* $CIRCLE_ARTIFACTS/
