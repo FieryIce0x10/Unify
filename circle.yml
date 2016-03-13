@@ -1,0 +1,17 @@
+machine:
+	java:
+		version: oraclejdk8
+	post:
+		- wget https://services.gradle.org/distributions/gradle-2.11-bin.zip && unzip gradle-2.11-bin.zip && mv gradle-2.11-bin $HOME/gradle
+
+dependencies:
+	cache_directories:
+		"$HOME/.gradle"
+	override:
+		- $HOME/gradle/gradle setupCIWorkspace
+
+test:
+	override:
+		- $HOME/gradle/gradle build sourcesJar javadocJar
+	post:
+		- cp build/libs/* $CIRCLE_ARTIFACTS/

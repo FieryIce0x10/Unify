@@ -21,9 +21,9 @@ apply plugin: 'forge'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-if(System.getenv().BUILD_NUMBER != null) {
+if(System.getenv().CIRCLE_BUILD_NUM != null) {
     // CI build
-    version = modversion  + "-" + mcversion + "-" + System.getenv().BUILD_NUMBER
+    version = modversion  + "-" + mcversion + "-" + System.getenv().CIRCLE_BUILD_NUM
 } else {
     // Local build
     version = modversion + "-" + mcversion + "-local"
