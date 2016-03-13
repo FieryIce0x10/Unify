@@ -2,7 +2,7 @@ machine:
   java:
     version: oraclejdk8
   post:
-    - wget https://services.gradle.org/distributions/gradle-2.11-bin.zip && unzip gradle-2.11-bin.zip && mv gradle-2.11-bin $HOME/gradle
+    - wget https://services.gradle.org/distributions/gradle-2.11-bin.zip && unzip gradle-2.11-bin.zip && mv gradle-2.11 $HOME/gradle
 
 dependencies:
   cache_directories:
