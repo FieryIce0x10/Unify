@@ -6,7 +6,7 @@ machine:
 
 dependencies:
   cache_directories:
-    "$HOME/.gradle"
+    - "$HOME/.gradle"
   override:
     - $HOME/gradle/gradle setupCIWorkspace
 
