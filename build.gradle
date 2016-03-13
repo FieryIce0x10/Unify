@@ -114,6 +114,7 @@ jar {
 javadoc {
     options {
         links('http://docs.oracle.com/javase/7/docs/api/')
+        links('http://google-gson.googlecode.com/svn/tags/gson-2.2.4/docs/javadocs/')
     }
 }
 
