@@ -3,8 +3,8 @@ machine:
     version: oraclejdk8
   post:
     - wget https://services.gradle.org/distributions/gradle-2.11-bin.zip
-	- unzip gradle-2.11-bin.zip
-	- mv gradle-2.11 ~/gradle
+    - unzip gradle-2.11-bin.zip
+    - mv gradle-2.11 ~/gradle
 
 dependencies:
   override:
