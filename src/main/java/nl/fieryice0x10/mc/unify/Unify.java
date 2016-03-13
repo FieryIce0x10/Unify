@@ -4,22 +4,22 @@
  *
  * Copyright (c) 2016 FieryIce0x10
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy 
- * of this software and associated documentation files (the "Software"), to deal 
- * in the Software without restriction, including without limitation the rights 
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
- * copies of the Software, and to permit persons to whom the Software is 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in 
+ * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  *******************************************************************************/
@@ -80,7 +80,7 @@ public class Unify {
 	 */
 	public static final String[] DICT_PREFIXES_BLACKLIST =
 		new String[] {"blockCloth", "blockGlass", "blockHopper"};
-		
+	
 	private static final Charset CONFIG_CHARSET = StandardCharsets.UTF_8;
 	private static final String CONFIG_FILE = MODID + ".cfg.json";
 	
@@ -103,34 +103,34 @@ public class Unify {
 		
 		final String compatBase =
 			Unify.class.getName().replace("Unify", "compat.");
-			
+		
 		addModProcessor("cofh.thermalfoundation.ThermalFoundation",
 				compatBase + "ThermalExpansionProcessor");
-				
+		
 		addModProcessor("mods.railcraft.common.core.Railcraft",
 				compatBase + "RailcraftProcessor");
-				
+		
 		addModProcessor("crazypants.enderio.EnderIO",
 				compatBase + "EnderIOProcessor");
-				
+		
 		addModProcessor("mekanism.common.Mekanism",
 				compatBase + "MekanismProcessor");
-				
+		
 		addModProcessor("ic2.core.IC2",
 				compatBase + "IndustrialCraftProcessor");
-				
+		
 		addModProcessor("forestry.Forestry",
 				compatBase + "ForestryProcessor");
-				
+		
 		addModProcessor("buildcraft.BuildCraftCore",
 				compatBase + "BuildcraftProcessor");
-				
+		
 		addModProcessor("micdoodle8.mods.galacticraft.core.GalacticraftCore",
 				compatBase + "GalacticraftProcesssor");
-				
+		
 		addModProcessor("mrtjp.projectred.ProjectRedCore",
 				compatBase + "ProjectRedProcessor");
-				
+		
 		addModProcessor("tconstruct.TConstruct",
 				compatBase + "TinkersConstructProcessor");
 	}
@@ -176,7 +176,9 @@ public class Unify {
 	 * class is available.
 	 *
 	 * @param testClass
+	 *            class to test
 	 * @param className
+	 *            mod processor class to create an instance of
 	 * @return the instance of the mod processor, or null if the test class is
 	 *         unavailable.
 	 */
@@ -321,14 +323,14 @@ public class Unify {
 			// Map<ItemId, Item>
 			Map<String, ItemStack> knownItems =
 				new TreeMap<String, ItemStack>();
-				
+			
 			for(ItemStack item : dict) {
 				knownItems.put(getItemStackId(item), item);
 			}
 			
 			List<String> preferredItems =
 				config.getReplacements(dictTag);
-				
+			
 			// List of missing items in the config.
 			List<String> missing =
 				new ArrayList<String>(knownItems.keySet());
