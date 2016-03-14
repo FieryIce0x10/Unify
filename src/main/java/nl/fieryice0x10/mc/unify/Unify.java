@@ -34,6 +34,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -118,18 +119,6 @@ public class Unify {
 		
 		addModProcessor("ic2.core.IC2",
 				compatBase + "IndustrialCraftProcessor");
-		
-		addModProcessor("forestry.Forestry",
-				compatBase + "ForestryProcessor");
-		
-		addModProcessor("buildcraft.BuildCraftCore",
-				compatBase + "BuildcraftProcessor");
-		
-		addModProcessor("micdoodle8.mods.galacticraft.core.GalacticraftCore",
-				compatBase + "GalacticraftProcesssor");
-		
-		addModProcessor("mrtjp.projectred.ProjectRedCore",
-				compatBase + "ProjectRedProcessor");
 		
 		addModProcessor("tconstruct.TConstruct",
 				compatBase + "TinkersConstructProcessor");
@@ -341,17 +330,28 @@ public class Unify {
 				 * Check with all mod processors to see if they recognize the
 				 * items that are registered, but not in the config (yet).
 				 * If the item is recognized we can add it to the config.
+				 * This makes sure that items of mods we have a processor for
+				 * are prioritized over other items.
 				 */
 				for(ModProcessor processor : processors) {
-					for(String missingItem : missing) {
-						ItemStack stack = knownItems.get(missingItem);
+					Iterator<String> it = missing.iterator();
+					while(it.hasNext()) {
+						ItemStack stack = knownItems.get(it.next());
 						
 						if(processor.isModItem(stack)) {
 							preferredItems.add(getItemStackId(stack));
+							it.remove();
 							
 							configChanged = true;
 						}
 					}
+				}
+				
+				if(missing.size() > 0) {
+					for(String missingItem : missing) {
+						preferredItems.add(missingItem);
+					}
+					configChanged = true;
 				}
 			}
 			
