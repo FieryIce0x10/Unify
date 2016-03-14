@@ -74,7 +74,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'net.industrial-craft', name: 'industrialcraft-2', ext: 'jar', version: '2.2.811-experimental', classifier: 'dev'
+    compile group: 'net.industrial-craft', name: 'industrialcraft-2', ext: 'jar', version: '2.2.816-experimental', classifier: 'dev'
     compile name: 'Railcraft', ext: 'jar', version: '1.7.10-9.9.0.0', classifier: 'dev'
 
     // Note: the repository changes for each file!
@@ -132,5 +132,4 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
-
 
