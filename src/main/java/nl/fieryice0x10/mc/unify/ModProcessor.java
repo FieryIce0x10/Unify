@@ -30,7 +30,7 @@ import java.util.Map;
 import net.minecraft.item.ItemStack;
 
 /**
- * 
+ * Interface for adapting outputs of mod specific crafting or machine recipes.
  */
 public interface ModProcessor {
 	/**

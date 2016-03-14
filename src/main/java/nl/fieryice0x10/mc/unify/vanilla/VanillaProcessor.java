@@ -4,22 +4,22 @@
  *
  * Copyright (c) 2016 FieryIce0x10
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy 
- * of this software and associated documentation files (the "Software"), to deal 
- * in the Software without restriction, including without limitation the rights 
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
- * copies of the Software, and to permit persons to whom the Software is 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in 
+ * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  *******************************************************************************/
@@ -35,8 +35,8 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 
-import nl.fieryice0x10.mc.unify.Unify;
 import nl.fieryice0x10.mc.unify.ModProcessor;
+import nl.fieryice0x10.mc.unify.Unify;
 import nl.fieryice0x10.mc.unify.crafting.CraftingProcessor;
 
 import org.apache.logging.log4j.Level;
@@ -44,7 +44,15 @@ import org.apache.logging.log4j.Level;
 import cpw.mods.fml.common.FMLLog;
 
 /**
- * 
+ * Basic processor for Minecraft recipes.
+ * <br />
+ * <br />
+ * Replaces recipe output for:
+ * <ul>
+ * <li>Crafting</li>
+ * <li>Furnace</li>
+ * <li>Dungeon loot</li>
+ * </ul>
  */
 public class VanillaProcessor implements ModProcessor {
 	private Field lootChestInfo;
@@ -85,7 +93,7 @@ public class VanillaProcessor implements ModProcessor {
 		// Crafting.
 		CraftingProcessor.process(replacements,
 				CraftingManager.getInstance().getRecipeList());
-				
+		
 		// Smelting.
 		@SuppressWarnings("unchecked")
 		Map<Object, Object> smelting =
@@ -97,7 +105,7 @@ public class VanillaProcessor implements ModProcessor {
 				ItemStack replacement =
 					Unify.firstMatchingReplacement(original,
 							replacements);
-							
+				
 				if(replacement != null) {
 					FMLLog.info("Replace smelting recipe %s->%s with %s",
 							keyObj,
@@ -113,7 +121,7 @@ public class VanillaProcessor implements ModProcessor {
 				@SuppressWarnings("unchecked")
 				Map<String, ChestGenHooks> lootMap =
 					(Map<String, ChestGenHooks>) lootChestInfo.get(null);
-					
+				
 				for(String hook : lootMap.keySet()) {
 					ChestGenHooks instance = lootMap.get(hook);
 					
@@ -121,13 +129,13 @@ public class VanillaProcessor implements ModProcessor {
 					List<WeightedRandomChestContent> contents =
 						(List<WeightedRandomChestContent>) lootContents.get(
 								instance);
-								
+					
 					for(WeightedRandomChestContent content : contents) {
 						ItemStack replacement =
 							Unify.firstMatchingReplacement(
 									content.theItemId,
 									replacements);
-									
+						
 						if(replacement != null) {
 							FMLLog.fine("Replace dungeon loot %s with %s",
 									content.theItemId, replacement);

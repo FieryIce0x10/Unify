@@ -29,7 +29,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 
 /**
- * 
+ * Interface for adapting recipe outputs for classes that implement IRecipe.
  */
 public interface CraftingAdapter {
 	/**

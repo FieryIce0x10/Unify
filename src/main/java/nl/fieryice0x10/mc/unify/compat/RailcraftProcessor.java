@@ -4,22 +4,22 @@
  *
  * Copyright (c) 2016 FieryIce0x10
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy 
- * of this software and associated documentation files (the "Software"), to deal 
- * in the Software without restriction, including without limitation the rights 
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
- * copies of the Software, and to permit persons to whom the Software is 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in 
+ * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  *******************************************************************************/
@@ -33,8 +33,8 @@ import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 
-import nl.fieryice0x10.mc.unify.Unify;
 import nl.fieryice0x10.mc.unify.ModProcessor;
+import nl.fieryice0x10.mc.unify.Unify;
 import nl.fieryice0x10.mc.unify.crafting.CraftingProcessor;
 
 import org.apache.logging.log4j.Level;
@@ -46,7 +46,16 @@ import mods.railcraft.common.util.crafting.BlastFurnaceCraftingManager.BlastFurn
 import mods.railcraft.common.util.crafting.CokeOvenCraftingManager.CokeOvenRecipe;
 
 /**
- * 
+ * Compatibility for Railcraft.
+ * <br />
+ * <br />
+ * Replaces recipe output for:
+ * <ul>
+ * <li>Blast furnace</li>
+ * <li>Coke oven</li>
+ * <li>Rock crusher</li>
+ * <li>Rolling machine</li>
+ * </ul>
  */
 public class RailcraftProcessor implements ModProcessor {
 	private Field cokeMatchDamage;
@@ -86,7 +95,7 @@ public class RailcraftProcessor implements ModProcessor {
 		@SuppressWarnings("unchecked")
 		List<BlastFurnaceRecipe> blast =
 			(List<BlastFurnaceRecipe>) RailcraftCraftingManager.blastFurnace.getRecipes();
-			
+		
 		List<BlastFurnaceRecipe> blastAdd = new ArrayList<>();
 		Iterator<BlastFurnaceRecipe> blastIt = blast.iterator();
 		while(blastIt.hasNext()) {
@@ -100,7 +109,7 @@ public class RailcraftProcessor implements ModProcessor {
 				blastAdd.add(new BlastFurnaceRecipe(recipe.getInput(),
 						recipe.matchDamage(), recipe.matchNBT(),
 						recipe.getCookTime(), replacement));
-						
+				
 				// Remove original recipe.
 				blastIt.remove();
 				
@@ -143,7 +152,7 @@ public class RailcraftProcessor implements ModProcessor {
 										matchNBT, replacement,
 										recipe.getFluidOutput(),
 										recipe.getCookTime()));
-										
+						
 						// Remove original recipe.
 						cokeIt.remove();
 						
@@ -179,7 +188,7 @@ public class RailcraftProcessor implements ModProcessor {
 							recipe.getInput(),
 							original.getUnlocalizedName(),
 							replacement.getUnlocalizedName());
-							
+					
 					recipe.getOutputs().remove(e);
 					recipe.addOutput(replacement, e.getValue());
 				}

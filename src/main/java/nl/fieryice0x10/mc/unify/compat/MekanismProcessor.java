@@ -4,22 +4,22 @@
  *
  * Copyright (c) 2016 FieryIce0x10
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy 
- * of this software and associated documentation files (the "Software"), to deal 
- * in the Software without restriction, including without limitation the rights 
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
- * copies of the Software, and to permit persons to whom the Software is 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in 
+ * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  *******************************************************************************/
@@ -30,8 +30,8 @@ import java.util.Map;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 
-import nl.fieryice0x10.mc.unify.Unify;
 import nl.fieryice0x10.mc.unify.ModProcessor;
+import nl.fieryice0x10.mc.unify.Unify;
 import nl.fieryice0x10.mc.unify.crafting.CraftingAdapter;
 import nl.fieryice0x10.mc.unify.crafting.CraftingProcessor;
 
@@ -46,7 +46,16 @@ import mekanism.common.recipe.outputs.ItemStackOutput;
 import mekanism.common.recipe.outputs.MachineOutput;
 
 /**
- * 
+ * Compatibility for Mekanism.
+ * <br />
+ * <br />
+ * Replaces recipe output for:
+ * <ul>
+ * <li>All machines registered in mekanism.common.recipe.RecipeHandler.Recipe
+ * </li>
+ * <li>All Mekanism shaped recipes</li>
+ * <li>All Mekanism shapeless recipes</li>
+ * </ul>
  */
 public class MekanismProcessor implements ModProcessor {
 	/**
@@ -114,7 +123,7 @@ public class MekanismProcessor implements ModProcessor {
 									recipe,
 									original.getUnlocalizedName(),
 									replacement.getUnlocalizedName());
-									
+							
 							((ItemStackOutput) output).output = replacement;
 						}
 					} else if(output instanceof ChanceOutput) {
@@ -131,7 +140,7 @@ public class MekanismProcessor implements ModProcessor {
 										recipe,
 										original.getUnlocalizedName(),
 										replacement.getUnlocalizedName());
-										
+								
 								chance.primaryOutput = replacement;
 							}
 						}
@@ -148,7 +157,7 @@ public class MekanismProcessor implements ModProcessor {
 										recipe,
 										original.getUnlocalizedName(),
 										replacement.getUnlocalizedName());
-										
+								
 								chance.secondaryOutput = replacement;
 							}
 						}
