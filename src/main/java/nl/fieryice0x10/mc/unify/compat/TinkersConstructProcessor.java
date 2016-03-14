@@ -38,8 +38,8 @@ import tconstruct.library.crafting.CastingRecipe;
 
 /**
  * Compatibility for Railcraft.
- * <br />
- * <br />
+ * <br>
+ * <br>
  * Replaces recipe output for:
  * <ul>
  * <li>Casting basin</li>
