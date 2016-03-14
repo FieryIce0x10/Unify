@@ -47,8 +47,8 @@ import mekanism.common.recipe.outputs.MachineOutput;
 
 /**
  * Compatibility for Mekanism.
- * <br />
- * <br />
+ * <br>
+ * <br>
  * Replaces recipe output for:
  * <ul>
  * <li>All machines registered in mekanism.common.recipe.RecipeHandler.Recipe

@@ -48,8 +48,8 @@ import ic2.core.AdvShapelessRecipe;
 
 /**
  * Compatibility for Industrialcraft 2.
- * <br />
- * <br />
+ * <br>
+ * <br>
  * Replaces recipe output for:
  * <ul>
  * <li>Macerator</li>

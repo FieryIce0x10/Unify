@@ -47,8 +47,8 @@ import mods.railcraft.common.util.crafting.CokeOvenCraftingManager.CokeOvenRecip
 
 /**
  * Compatibility for Railcraft.
- * <br />
- * <br />
+ * <br>
+ * <br>
  * Replaces recipe output for:
  * <ul>
  * <li>Blast furnace</li>

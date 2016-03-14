@@ -41,8 +41,8 @@ import crazypants.enderio.material.OreDictionaryPreferences;
 
 /**
  * Compatibility for EnderIO.
- * <br />
- * <br />
+ * <br>
+ * <br>
  * Replaces recipe output for:
  * <ul>
  * <li>Sag mill</li>

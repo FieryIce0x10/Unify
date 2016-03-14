@@ -45,8 +45,8 @@ import cpw.mods.fml.common.FMLLog;
 
 /**
  * Compatibility for Thermal Expansion / Thermal Foundation.
- * <br />
- * <br />
+ * <br>
+ * <br>
  * Replaces recipe output for:
  * <ul>
  * <li>Redstone furnace</li>

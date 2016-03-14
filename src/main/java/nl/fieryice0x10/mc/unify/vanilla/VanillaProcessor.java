@@ -45,8 +45,8 @@ import cpw.mods.fml.common.FMLLog;
 
 /**
  * Basic processor for Minecraft recipes.
- * <br />
- * <br />
+ * <br>
+ * <br>
  * Replaces recipe output for:
  * <ul>
  * <li>Crafting</li>
