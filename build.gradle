@@ -36,7 +36,7 @@ minecraft {
     runDir = "eclipse"
     
     replace "@VERSION@", project.version
-    replaceIn "MetalUnifier.java"
+    replaceIn "Unify.java"
 }
 
 repositories {
