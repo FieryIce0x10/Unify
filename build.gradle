@@ -109,6 +109,7 @@ processResources {
 jar {
     // Do not include the COFH AT, as it is only used to run the client.
     exclude 'CoFH_at.cfg' 
+    from "LICENSE"
 }
 
 javadoc {
@@ -121,11 +122,13 @@ javadoc {
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
+    from "LICENSE"
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
+    from "LICENSE"
 }
 
 artifacts {
