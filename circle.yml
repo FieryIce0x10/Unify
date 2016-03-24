@@ -1,6 +1,6 @@
 machine:
   java:
-    version: oraclejdk8
+    version: openjdk7
   post:
     - wget https://services.gradle.org/distributions/gradle-2.11-bin.zip
     - unzip gradle-2.11-bin.zip
