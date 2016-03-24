@@ -409,8 +409,19 @@ public class Unify {
 	private void processRecipes() {
 		// Process recipes.
 		if(replacements.size() > 0) {
-			for(ModProcessor processor : processors) {
-				processor.replaceRecipes(replacements);
+			Iterator<ModProcessor> it = processors.iterator();
+			while(it.hasNext()) {
+				ModProcessor processor = it.next();
+				
+				try {
+					processor.replaceRecipes(replacements);
+				} catch(Exception e) {
+					FMLLog.log(Level.WARN, e,
+							"Failed to replace the recipes for processor "
+									+ processor.getModId()
+									+ ", blacklisting it");
+					it.remove();
+				}
 			}
 		}
 	}
