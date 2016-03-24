@@ -29,6 +29,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -80,10 +81,13 @@ public class VanillaProcessor implements ModProcessor {
 	}
 	
 	@Override
-	public boolean isModItem(ItemStack item) {
-		if(item.getItem() != null) {
-			return item	.getItem().getClass().getName()
-						.startsWith("net.minecraft.");
+	public boolean isModItem(ItemStack stack) {
+		if(stack != null) {
+			Item item = stack.getItem();
+			if(item != null
+					&& item.getClass().getName().startsWith("net.minecraft.")) {
+				return item.delegate.name().startsWith("minecraft:");
+			}
 		}
 		return false;
 	}

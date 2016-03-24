@@ -49,6 +49,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import nl.fieryice0x10.mc.unify.vanilla.VanillaProcessor;
 
+import org.apache.logging.log4j.Level;
+
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -80,7 +82,8 @@ public class Unify {
 	 * DICT_PREFIXES prefixes.
 	 */
 	public static final String[] DICT_PREFIXES_BLACKLIST =
-		new String[] {"blockCloth", "blockGlass", "blockHopper"};
+		new String[] {"blockCloth", "blockGlass", "blockHopper",
+			"ingotUnstable"};
 	
 	private static final Charset CONFIG_CHARSET = StandardCharsets.UTF_8;
 	private static final String CONFIG_FILE = MODID + ".cfg.json";
@@ -261,7 +264,7 @@ public class Unify {
 							CONFIG_CHARSET), Config.class);
 			} catch(JsonSyntaxException | JsonIOException | IOException e) {
 				config = null;
-				e.printStackTrace();
+				FMLLog.log(Level.WARN, e, "Failed to load config");
 			}
 		}
 		
